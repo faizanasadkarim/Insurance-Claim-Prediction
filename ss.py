@@ -21,19 +21,17 @@ def convert_to_correct_type(form_input):
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
-    if request.method == 'GET':        
+    if request.method == 'GET':
         return render_template('index.html')
     else:
         form_input = request.form.to_dict()
-        # Convert form inputs to correct types
+        # Convert form inputs to their correct types
         form_input = convert_to_correct_type(form_input)
-        # Prepare input for prediction
+        # Create a DataFrame with one row
         df_input = pd.DataFrame([form_input])
-        x = encoder.transform(df_input)
-        pred = model.predict(x)
-        print(pred)  # Check the console for prediction output
-        return render_template('index.html', prediction=pred[0])
-
+        x=encoder.transform(df_input)
+        pred=model.predict(x)
+        return str(pred[0])
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run()

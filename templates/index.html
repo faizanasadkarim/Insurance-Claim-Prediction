@@ -43,16 +43,19 @@
             </div>
         </div>
 
-        {% if prediction == 0 %}
-        <h3 class="mt-4">Prediction: No Claim filed </h3>
-        {% else %}
-        <h3 class="mt-4">Prediction: Claim Filed</h3>
+        <!-- Display prediction only if it is set -->
+        {% if prediction is not none %}
+        <h3 class="mt-4">
+            {% if prediction == 0 %}
+                Prediction: No Claim filed
+            {% else %}
+                Prediction: Claim Filed
+            {% endif %}
+        </h3>
         {% endif %}
 
         <form method="POST" action="/">
             <!-- Form content -->
-            
-        <form method="POST" action="/">
             <div class="form-group">
                 <label for="NVVar3">NVVar3</label>
                 <input type="number" class="form-control" id="NVVar3" name="NVVar3" required>
@@ -102,7 +105,6 @@
                 <label for="Blind_Model">Blind Model</label>
                 <input type="text" class="form-control" id="Blind_Model" name="Blind_Model" required>
             </div>
-
 
             <!-- Repeat for other form fields -->
             <button type="submit" class="btn btn-primary">Submit</button>

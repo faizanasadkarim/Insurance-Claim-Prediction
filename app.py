@@ -9,7 +9,6 @@ app = Flask(__name__)
 def convert_to_correct_type(form_input):
     """Convert input fields to their correct types (e.g., numeric)."""
     for key, value in form_input.items():
-        
         try:
             # Try to convert to float
             form_input[key] = float(value)
@@ -21,17 +20,20 @@ def convert_to_correct_type(form_input):
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
-    if request.method == 'GET':
-        return render_template('index.html')
-    else:
+    prediction = None  # Initialize prediction as None
+    
+    if request.method == 'POST':
         form_input = request.form.to_dict()
-        # Convert form inputs to their correct types
+        # Convert form inputs to correct types
         form_input = convert_to_correct_type(form_input)
-        # Create a DataFrame with one row
+        # Prepare input for prediction
         df_input = pd.DataFrame([form_input])
-        x=encoder.transform(df_input)
-        pred=model.predict(x)
-        return str(pred[0])
+        x = encoder.transform(df_input)
+        pred = model.predict(x)
+        prediction = pred[0]  # Set the prediction
+        
+    return render_template('index.html', prediction=prediction)
+
 
 if __name__ == "__main__":
     app.run()
