@@ -1,38 +1,116 @@
-<title>Bank Application </title>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claim Prediction Model</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* Styling for the image with a color overlay */
+        .image-container {
+            position: relative;
+            width: 100%;
+            height: 400px; /* Adjust the height as needed */
+            background-image: url('static/R.jpg'); /* Replace with the actual image URL */
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .image-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* Black color overlay with transparency */
+            color: white; /* Text color on the overlay */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5">Claim Classification</h1>
+        <p>Predict whether a person will file a claim or not based on Vehicle features</p>
+        <p>Enter the details of the claim below to classify it:</p>
 
-<form method="POST">
-    NVVar3:         <input type="number" name ='NVVar3'>
-    <br><br>
-    Var3:           <input type="number" name ='Var3'>
-    <br><br>
-    Var7:           <input type="number" name ='Var7'>
-    <br><br>
-    Cat12:          <input type="text" name ='Cat12'>
-    <br><br>
-    Cat10:          <input type="text" name ='Cat10'>
-    <br><br>
+        <!-- Add image section with overlay -->
+        <div class="image-container">
+            <div class="image-overlay">
+                <h2>Claim Classification</h2>
+            </div>
+        </div>
 
-    
-    Cat8:           <input type="text" name ='Cat8'>
-    <br><br>
-    Var2:           <input type="number" name ='Var2'>
-    <br><br>
-    Var1:           <input type="number" name ='Var1'>
-    <br><br>
-    Cat6:           <input type="text" name ='Cat6'>
-    <br><br>
-    Blind_Model:    <input type="text" name ='Blind_Model'>
-    <br><br>
-    
-   
-    
+        {% if prediction == 0 %}
+        <h3 class="mt-4">Prediction: No Claim filed </h3>
+        {% else %}
+        <h3 class="mt-4">Prediction: Claim Filed</h3>
+        {% endif %}
 
-    
-   
-    
-    
-    
-    <input type="submit">
-</form>
+        <form method="POST" action="/">
+            <!-- Form content -->
+            
+        <form method="POST" action="/">
+            <div class="form-group">
+                <label for="NVVar3">NVVar3</label>
+                <input type="number" class="form-control" id="NVVar3" name="NVVar3" required>
+            </div>
 
-    
+            <div class="form-group">
+                <label for="Var3">Var3</label>
+                <input type="number" class="form-control" id="Var3" name="Var3" required>
+            </div>
+
+            <div class="form-group">
+                <label for="Var7">Var7</label>
+                <input type="number" class="form-control" id="Var7" name="Var7" required>
+            </div>
+
+            <div class="form-group">
+                <label for="Cat12">Cat12</label>
+                <input type="text" class="form-control" id="Cat12" name="Cat12" required>
+            </div>
+
+            <div class="form-group">
+                <label for="Cat10">Cat10</label>
+                <input type="text" class="form-control" id="Cat10" name="Cat10" required>
+            </div>
+
+            <div class="form-group">
+                <label for="Cat8">Cat8</label>
+                <input type="text" class="form-control" id="Cat8" name="Cat8" required>
+            </div>
+
+            <div class="form-group">
+                <label for="Var2">Var2</label>
+                <input type="number" class="form-control" id="Var2" name="Var2" required>
+            </div>
+
+            <div class="form-group">
+                <label for="Var1">Var1</label>
+                <input type="number" class="form-control" id="Var1" name="Var1" required>
+            </div>
+
+            <div class="form-group">
+                <label for="Cat6">Cat6</label>
+                <input type="text" class="form-control" id="Cat6" name="Cat6" required>
+            </div>
+
+            <div class="form-group">
+                <label for="Blind_Model">Blind Model</label>
+                <input type="text" class="form-control" id="Blind_Model" name="Blind_Model" required>
+            </div>
+
+
+            <!-- Repeat for other form fields -->
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
